@@ -1,0 +1,27 @@
+import json
+from difflib import get_close_matches
+
+data = json.load(open('C:/Users/Naveen/Downloads/data.json'))
+def translate(word):
+    if word in data:
+        return data[word]
+    elif len(get_close_matches(word, data.keys())) > 0:
+        yes_0r_no = input('Opps! It looks like  %s instead! Enter Y if yes or N if no' % get_close_matches(word, data.keys())[0])
+        if yes_0r_no == 'Y':
+            return "%s" % data[get_close_matches(word, data.keys())[0]]
+        elif yes_0r_no == 'N':
+            return 'The word do not exist please double check'
+        else:
+            return 'We did not understand your query'
+    else:
+        return 'Invalid Word please check and enter again'
+
+user_input = input('enter the word: ')
+lower_user_input = user_input.lower()
+lower_user_input_without_space = lower_user_input.replace(" ", '')
+n = (translate(lower_user_input_without_space))
+if list == type(n):
+    for i in n:
+        print(i)
+else:
+    print(n)
